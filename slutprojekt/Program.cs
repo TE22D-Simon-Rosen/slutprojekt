@@ -6,8 +6,9 @@ Raylib.SetTargetFPS(60);
 
 Player player = new Player();
 Rectangle playerRect = new Rectangle(player.position, player.size);
+Random random = new Random();
 
-
+List<Enemy> listOfEnemies = new List<Enemy> ();
 
 while (!Raylib.WindowShouldClose()){
     playerRect.Position = player.position;
@@ -37,14 +38,18 @@ while (!Raylib.WindowShouldClose()){
     if (Raylib.IsKeyPressed(KeyboardKey.B)){
         Enemy enemy = new Enemy();
 
-        enemy.Spawn();
+        enemy.Spawn(enemy, random.Next(10, 1270), random.Next(10, 710), listOfEnemies);
     }
-    
-
 
     Raylib.BeginDrawing();
 
     Raylib.DrawRectangleRec(playerRect, Color.Green);
+
+
+    for (int i = 0; i > listOfEnemies.Count(); i++){
+        Raylib.DrawRectangleRec(listOfEnemies[i].enemyRect, Color.Red);
+    }
+
 
     Raylib.ClearBackground(Color.DarkGray);
     Raylib.EndDrawing();
