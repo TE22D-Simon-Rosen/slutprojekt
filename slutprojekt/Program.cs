@@ -6,50 +6,63 @@ Raylib.SetTargetFPS(60);
 
 Player player = new Player();
 Rectangle playerRect = new Rectangle(player.position, player.size);
+Rectangle playerReach = new Rectangle(player.direction, player.size);
 Random random = new Random();
 
-List<Enemy> listOfEnemies = new List<Enemy> ();
+Color transparentGreen = new Color(108, 224, 79, 100);
+List<object> plants = new List<object>();
+
 
 while (!Raylib.WindowShouldClose()){
     playerRect.Position = player.position;
-
-    player.movement.X = 0;
-    player.movement.Y = 0;
+    playerReach.Position = player.position + player.direction;
 
 
-    if (Raylib.IsKeyDown(KeyboardKey.A)){
-        player.movement.X = -10;
+    if (Raylib.IsKeyPressed(KeyboardKey.A)){
+        player.position.X -= 50;
     }
-    if (Raylib.IsKeyDown(KeyboardKey.D)){
-        player.movement.X = 10;
+    if (Raylib.IsKeyPressed(KeyboardKey.D)){
+        player.position.X += 50;
     }
-    if (Raylib.IsKeyDown(KeyboardKey.W)){
-        player.movement.Y = -10;
+    if (Raylib.IsKeyPressed(KeyboardKey.W)){
+        player.position.Y -= 50;
     }
-    if (Raylib.IsKeyDown(KeyboardKey.S)){
-        player.movement.Y = 10;
+    if (Raylib.IsKeyPressed(KeyboardKey.S)){
+        player.position.Y += 50;
     }
 
-
-    Vector2.Normalize(player.movement);
-    player.position += player.movement;
-
-    
-    if (Raylib.IsKeyPressed(KeyboardKey.B)){
-        Enemy enemy = new Enemy();
-
-        enemy.Spawn(enemy, random.Next(10, 1270), random.Next(10, 710), listOfEnemies);
+    if (Raylib.IsKeyPressed(KeyboardKey.Up)){
+        player.ChangeDirection("UP", player);
     }
+    if (Raylib.IsKeyPressed(KeyboardKey.Down)){
+        player.ChangeDirection("DOWN", player);
+    }
+    if (Raylib.IsKeyPressed(KeyboardKey.Left)){
+        player.ChangeDirection("LEFT", player);
+    }
+    if (Raylib.IsKeyPressed(KeyboardKey.Right)){
+        player.ChangeDirection("RIGHT", player);
+    }
+
+
+    if (Raylib.IsKeyPressed(KeyboardKey.C)){
+        Plant1 plant = new Plant1();
+        plant.position = player.position + player.direction;
+        plant.plantRect.X = (int)plant.position.X;
+        plant.plantRect.Y = (int)plant.position.Y;
+
+        plants.Add(plant);
+    }
+
 
     Raylib.BeginDrawing();
 
     Raylib.DrawRectangleRec(playerRect, Color.Green);
+    Raylib.DrawRectangleRec(playerReach, transparentGreen);
 
-
-    for (int i = 0; i > listOfEnemies.Count(); i++){
-        Raylib.DrawRectangleRec(listOfEnemies[i].enemyRect, Color.Red);
+    foreach (Plant1 plant in plants){
+        plant.DrawPlant(plant);
     }
-
 
     Raylib.ClearBackground(Color.DarkGray);
     Raylib.EndDrawing();
