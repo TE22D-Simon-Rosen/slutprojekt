@@ -31,6 +31,7 @@ while (!Raylib.WindowShouldClose()){
         player.position.Y += 50;
     }
 
+
     if (Raylib.IsKeyPressed(KeyboardKey.Up)){
         player.ChangeDirection("UP", player);
     }
@@ -57,13 +58,17 @@ while (!Raylib.WindowShouldClose()){
 
     Raylib.BeginDrawing();
 
-    Raylib.DrawRectangleRec(playerRect, Color.Green);
-    Raylib.DrawRectangleRec(playerReach, transparentGreen);
-
     foreach (Plant1 plant in plants){
         plant.DrawPlant(plant);
+        Console.WriteLine($"" + plant + "  " + plant.position);
     }
 
-    Raylib.ClearBackground(Color.DarkGray);
+
+    Raylib.DrawRectangleRec(playerRect, Color.Green);
+    Raylib.DrawRectangleRec(playerReach, transparentGreen);
+    
+    player.DrawHotbar();
+
+    Raylib.ClearBackground(Color.DarkGreen);
     Raylib.EndDrawing();
 }
