@@ -66,10 +66,17 @@ while (!Raylib.WindowShouldClose()){
     }
 
 
-    if (Raylib.IsKeyPressed(KeyboardKey.C)){
-        Plants plant = new Plants();
-        plant.PlacePlant(plant, player, listOfPlants);
+    if (Raylib.IsKeyPressed(KeyboardKey.M)){
+        if (player.selectedPlant != 1){
+            Plants plant = new Plants();
+            plant.PlacePlant(plant, player, listOfPlants);
+        }
+        else{
+            player.RemovePlant(listOfPlants);
+        }
+        
     }
+
 
 
     Raylib.BeginDrawing();

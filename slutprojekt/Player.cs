@@ -6,7 +6,7 @@ class Player
 {
     public Vector2 position = new(Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2); // Set to the middle of the screen
     public Vector2 size = new(50, 50);
-    public Vector2 direction = new(50, 0); //Looking direction to show where the player is looking and where they can place a crop
+    public Vector2 direction = new(50, 0); // Looking direction to show where the player is looking and where they can place a crop
     public int selectedPlant = 1; // Selected plant in hotbar, 1 = remove
     
 
@@ -37,6 +37,15 @@ class Player
 
             if (i+1 == selectedPlant){
                Raylib.DrawRectangleLines(Raylib.GetScreenWidth() / 2 - 188 + 80 * i, Raylib.GetScreenHeight() - 90, 55, 55, Color.SkyBlue);
+            }
+        }
+    }
+
+
+    public void RemovePlant(List<Plants> listOfPlants){
+        for (int i = 0; i < listOfPlants.Count(); i++){
+            if (listOfPlants[i].plantRect.Position == position + direction){
+                listOfPlants.Remove(listOfPlants[i]);
             }
         }
     }
