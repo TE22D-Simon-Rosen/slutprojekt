@@ -10,7 +10,10 @@ Rectangle playerReach = new Rectangle(player.direction, player.size);
 Random random = new Random();
 
 Color transparentGreen = new Color(108, 224, 79, 100);
-List<object> plants = new List<object>();
+Color transparentRed = new Color(237, 12, 12, 150);
+List<Plants> listOfPlants = new List<Plants>();
+
+int day = 1;
 
 
 while (!Raylib.WindowShouldClose()){
@@ -46,26 +49,45 @@ while (!Raylib.WindowShouldClose()){
     }
 
 
-    if (Raylib.IsKeyPressed(KeyboardKey.C)){
-        Plant1 plant = new Plant1();
-        plant.position = player.position + player.direction;
-        plant.plantRect.X = (int)plant.position.X;
-        plant.plantRect.Y = (int)plant.position.Y;
+    if (Raylib.IsKeyPressed(KeyboardKey.One)){
+        player.selectedPlant = 1;
+    }
+    if (Raylib.IsKeyPressed(KeyboardKey.Two)){
+        player.selectedPlant = 2;
+    }
+    if (Raylib.IsKeyPressed(KeyboardKey.Three)){
+        player.selectedPlant = 3;
+    }
+    if (Raylib.IsKeyPressed(KeyboardKey.Four)){
+        player.selectedPlant = 4;
+    }
+    if (Raylib.IsKeyPressed(KeyboardKey.Five)){
+        player.selectedPlant = 5;
+    }
 
-        plants.Add(plant);
+
+    if (Raylib.IsKeyPressed(KeyboardKey.C)){
+        Plants plant = new Plants();
+        plant.PlacePlant(plant, player, listOfPlants);
     }
 
 
     Raylib.BeginDrawing();
 
-    foreach (Plant1 plant in plants){
+    foreach (Plants plant in listOfPlants){
         plant.DrawPlant(plant);
-        Console.WriteLine($"" + plant + "  " + plant.position);
     }
 
 
     Raylib.DrawRectangleRec(playerRect, Color.Green);
-    Raylib.DrawRectangleRec(playerReach, transparentGreen);
+
+    if (player.selectedPlant == 1){
+        Raylib.DrawRectangleRec(playerReach, transparentRed); // If remove is selected in hotbar the square will be red
+    }
+    else{
+        Raylib.DrawRectangleRec(playerReach, transparentGreen);
+    }
+    
     
     player.DrawHotbar();
 
