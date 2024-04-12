@@ -29,13 +29,14 @@ class Player
 
     //Draw the hotbar
     static Color[] selectablePlants = {Color.White, Color.Blue, Color.Red, Color.Orange, Color.Pink};
+
     public void DrawHotbar(){ // Draws a rectangle 100 pixels from the bottom middle of the screen with a size of 400px horizontal, 75px vertical
         Raylib.DrawRectangle(Raylib.GetScreenWidth() / 2 - 200, Raylib.GetScreenHeight() - 100, 400, 75, Color.Beige);
 
         for (int i = 0; i < 5; i++){ // Draws 5 slots in the hotbar
             Raylib.DrawRectangle(Raylib.GetScreenWidth() / 2 - 188 + 80 * i, Raylib.GetScreenHeight() - 90, 55, 55, selectablePlants[i]);
 
-            if (i+1 == selectedPlant){
+            if (i+1 == selectedPlant){ // Draws an outline around the selected slot
                Raylib.DrawRectangleLines(Raylib.GetScreenWidth() / 2 - 188 + 80 * i, Raylib.GetScreenHeight() - 90, 55, 55, Color.SkyBlue);
             }
         }
@@ -44,8 +45,8 @@ class Player
 
     public void RemovePlant(List<Plants> listOfPlants){
         for (int i = 0; i < listOfPlants.Count(); i++){
-            if (listOfPlants[i].plantRect.Position == position + direction){
-                listOfPlants.Remove(listOfPlants[i]);
+            if (listOfPlants[i].position == position + direction + new Vector2(25, 25)){ // if the plant the forloop is checking is the same one that the player wants removed
+                listOfPlants.Remove(listOfPlants[i]); // remove
             }
         }
     }

@@ -13,13 +13,17 @@ Color transparentGreen = new Color(108, 224, 79, 100);
 Color transparentRed = new Color(237, 12, 12, 150);
 List<Plants> listOfPlants = new List<Plants>();
 
-int day = 1;
+Plants testPlant = new Plants();
+listOfPlants.Add(testPlant);
+
+Game game = new Game();
+
+
 
 
 while (!Raylib.WindowShouldClose()){
     playerRect.Position = player.position;
     playerReach.Position = player.position + player.direction;
-
 
     if (Raylib.IsKeyPressed(KeyboardKey.A)){
         player.position.X -= 50;
@@ -66,7 +70,7 @@ while (!Raylib.WindowShouldClose()){
     }
 
 
-    if (Raylib.IsKeyPressed(KeyboardKey.M)){
+    if (Raylib.IsKeyReleased(KeyboardKey.M)){
         if (player.selectedPlant != 1){
             Plants plant = new Plants();
             plant.PlacePlant(plant, player, listOfPlants);
@@ -74,12 +78,11 @@ while (!Raylib.WindowShouldClose()){
         else{
             player.RemovePlant(listOfPlants);
         }
-        
     }
 
 
-
     Raylib.BeginDrawing();
+
 
     foreach (Plants plant in listOfPlants){
         plant.DrawPlant(plant);
@@ -97,6 +100,10 @@ while (!Raylib.WindowShouldClose()){
     
     
     player.DrawHotbar();
+    
+    if (Raylib.IsKeyPressed(KeyboardKey.E)){
+        game.EndDay(listOfPlants);
+    }
 
     Raylib.ClearBackground(Color.DarkGreen);
     Raylib.EndDrawing();
