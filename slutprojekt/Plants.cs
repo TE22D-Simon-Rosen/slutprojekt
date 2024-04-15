@@ -33,12 +33,14 @@ class Plants
         }
     }
 
-
+    // Places a plant
     public void PlacePlant(Plants plant, Player player, List<Plants> plants)
     {
         plant.type = player.selectedPlant - 2; // subtract 2 to work with plantTypes array
         plants.Add(plant); // Adds the plant to a list so it can be drawn from a foreach loop
 
+        // Plant type will change the color of the plant, for how many days it will grow, and how much it grows per day
+        // Each plant will grow to 25
         if (plant.type == 0)
         {
             plant.finalStage = 5;
@@ -69,7 +71,7 @@ class Plants
             }
         }
 
-        plant.position = player.position + player.direction + new Vector2(25, 25); 
+        plant.position = player.position + player.direction + new Vector2(25, 25);
         // Sets the position to the middle of the players transparent green square
     }
 }

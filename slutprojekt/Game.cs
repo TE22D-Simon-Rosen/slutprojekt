@@ -4,7 +4,8 @@ class Game
 {
     public int currentDay = 1;
     public int timer = 0;
-    public string scene = "game";
+    public bool tutorial = false;
+    public string scene = "start";
     public Rectangle bed = new Rectangle(0, 0, 100, 100);
 
 
@@ -13,7 +14,8 @@ class Game
         Raylib.DrawRectangleRec(bed, Color.Yellow);
     }
 
-    public void EndDay(Rectangle player, List<Plants> plants)
+    // Ends the day by making plants grow and selling inventory
+    public void EndDay(List<Plants> plants, Player player)
     {
         currentDay += 1;
 
@@ -24,11 +26,15 @@ class Game
                 plant.stage += 1;
             }
         }
+
+        player.money += player.inventory * 3;
+        player.inventory = 0;
     }
 
+    // Used to show a black screen for 3 seconds while the player sleeps
     public void Sleep()
     {
-        if (timer < 60 * 5) // If the times is less than 5 seconds
+        if (timer < 60 * 3) // If the times is less than 5 seconds
         {
             Raylib.DrawRectangle(0, 0, 2000, 1000, Color.Black);
             Raylib.DrawText("Day:", Raylib.GetScreenWidth() / 2 - 70, Raylib.GetScreenHeight() / 2 - 20, 50, Color.White);
@@ -39,5 +45,11 @@ class Game
         {
             scene = "game";
         }
+    }
+
+
+    public void showTutorial()
+    {
+
     }
 }

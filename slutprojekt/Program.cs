@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Formats.Asn1;
+using System.Numerics;
 using Raylib_cs;
 
 Raylib.InitWindow(1280, 720, "hejhej");
@@ -21,10 +22,22 @@ Game game = new Game();
 
 while (!Raylib.WindowShouldClose())
 {
-    if (game.scene == "game"){
+    if (game.scene == "start")
+    {
+        Raylib.DrawText("cool game", Raylib.GetScreenWidth() / 2 - 225, Raylib.GetScreenHeight() / 2 - 150, 100, Color.Blue);
+        Raylib.DrawText("Press space to start", Raylib.GetScreenWidth() / 2 - 220, 500, 40, Color.White);
+
+        if (Raylib.IsKeyPressed(KeyboardKey.Space))
+        {
+            game.scene = "game";
+        }
+    }
+    else if (game.scene == "game")
+    {
         playerRect.Position = player.position;
         playerReach.Position = player.position + player.direction;
 
+        // Player movement
         if (Raylib.IsKeyPressed(KeyboardKey.A))
         {
             player.position.X -= 50;
@@ -42,7 +55,7 @@ while (!Raylib.WindowShouldClose())
             player.position.Y += 50;
         }
 
-
+        // Changes which direction the player is looking
         if (Raylib.IsKeyPressed(KeyboardKey.Up))
         {
             player.ChangeDirection("UP", player);
@@ -60,7 +73,7 @@ while (!Raylib.WindowShouldClose())
             player.ChangeDirection("RIGHT", player);
         }
 
-
+        // Changes the selected item in the hotbar
         if (Raylib.IsKeyPressed(KeyboardKey.One))
         {
             player.selectedPlant = 1;
@@ -82,7 +95,7 @@ while (!Raylib.WindowShouldClose())
             player.selectedPlant = 5;
         }
 
-
+        // Place or remove plant when pressing M
         if (Raylib.IsKeyReleased(KeyboardKey.M))
         {
             if (player.selectedPlant != 1)
@@ -125,8 +138,9 @@ while (!Raylib.WindowShouldClose())
 
         if (Raylib.IsKeyPressed(KeyboardKey.E))
         {
-            if (Raylib.CheckCollisionRecs(playerRect, game.bed)){
-                game.EndDay(playerRect, listOfPlants);
+            if (Raylib.CheckCollisionRecs(playerRect, game.bed))
+            {
+                game.EndDay(listOfPlants, player);
                 game.timer = 0;
                 game.scene = "sleep";
             }
@@ -134,9 +148,8 @@ while (!Raylib.WindowShouldClose())
 
         Console.WriteLine(string.Join(", ", listOfPlants));
     }
-
-
-    else if (game.scene == "sleep"){
+    else if (game.scene == "sleep")
+    {
         game.Sleep();
     }
 
