@@ -1,0 +1,11 @@
+method EndDay
+
+    day + 1
+
+    for every plant
+        if the plant is not fully grown
+            grow 1 step
+        else do nothing
+
+    set the players money equal to their inventory
+    set inventory to 0

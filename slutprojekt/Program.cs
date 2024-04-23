@@ -26,10 +26,20 @@ while (!Raylib.WindowShouldClose())
     {
         Raylib.DrawText("cool game", Raylib.GetScreenWidth() / 2 - 225, Raylib.GetScreenHeight() / 2 - 150, 100, Color.Blue);
         Raylib.DrawText("Press space to start", Raylib.GetScreenWidth() / 2 - 220, 500, 40, Color.White);
+        Raylib.DrawText("Press E to view how to play", Raylib.GetScreenWidth() / 2 - 190, 600, 40, Color.White);
 
         if (Raylib.IsKeyPressed(KeyboardKey.Space))
         {
             game.scene = "game";
+        }
+        if (Raylib.IsKeyPressed(KeyboardKey.E)){
+            game.scene = "tutorial";
+        }
+    }
+    else if (game.scene == "tutorial"){
+        game.ShowTutorial();
+        if (Raylib.IsKeyPressed(KeyboardKey.E)){
+            game.scene = "start";
         }
     }
     else if (game.scene == "game")

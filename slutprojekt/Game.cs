@@ -48,8 +48,9 @@ class Game
     }
 
 
-    public void showTutorial()
+    public void ShowTutorial()
     {
-
+        Raylib.DrawRectangle(300, 200, 600, 400, Color.Gray);
+        Raylib.DrawText("Press E to return", Raylib.GetScreenWidth() / 2 - 220, 500, 20, Color.White);
     }
 }
