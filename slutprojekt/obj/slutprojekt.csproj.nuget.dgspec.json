@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\slutprojekt.csproj": {}
+    "c:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\slutprojekt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\slutprojekt.csproj": {
+    "c:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\slutprojekt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\slutprojekt.csproj",
+        "projectUniqueName": "c:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\slutprojekt.csproj",
         "projectName": "slutprojekt",
-        "projectPath": "C:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\slutprojekt.csproj",
+        "projectPath": "c:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\slutprojekt.csproj",
         "packagesPath": "C:\\Users\\simon.rosen2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\obj\\",
+        "outputPath": "c:\\Users\\simon.rosen2\\Documents\\Programmering med micke b\\slutprojekt\\slutprojekt\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

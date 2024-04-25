@@ -51,6 +51,21 @@ class Game
     public void ShowTutorial()
     {
         Raylib.DrawRectangle(300, 200, 600, 400, Color.Gray);
-        Raylib.DrawText("Press E to return", Raylib.GetScreenWidth() / 2 - 220, 500, 20, Color.White);
+        Raylib.DrawText("Press E to return", 325, 225, 20, Color.White);
+
+        Raylib.DrawText("Place a plant by selecting it with 2, 3, 4 or 5", 325, 255, 20, Color.White);
+        Raylib.DrawText("and place it using M", 325, 275, 20, Color.White);
+
+        Raylib.DrawText("To remove a plant, select the remove tool with 1", 325, 305, 20, Color.White);
+        Raylib.DrawText("and press M on the selected plant", 325, 325, 20, Color.White);
+
+        Raylib.DrawText("For plants to grow and to earn money, ", 325, 355, 20, Color.White);
+        Raylib.DrawText("you need to sleep at the sleep spot in the top left", 325, 375, 20, Color.White);
+
+        Raylib.DrawText("To sleep, press E when in the sleep spot", 325, 395, 20, Color.White);
+
+        if (Raylib.IsKeyPressed(KeyboardKey.E)){
+            scene = "start";
+        }
     }
 }
