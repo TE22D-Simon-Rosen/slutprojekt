@@ -13,11 +13,13 @@ Random random = new Random();
 Color transparentGreen = new Color(108, 224, 79, 100);
 Color transparentRed = new Color(237, 12, 12, 150);
 List<Plants> listOfPlants = new List<Plants>();
+// Is a list becuase it has to be dynamically changed when placing plants
 
 Plants testPlant = new Plants();
 listOfPlants.Add(testPlant);
 
 Game game = new Game();
+
 
 
 while (!Raylib.WindowShouldClose())
@@ -42,68 +44,22 @@ while (!Raylib.WindowShouldClose())
             game.scene = "start";
         }
     }
+    else if(game.scene == "convert"){
+
+    }
     else if (game.scene == "game")
     {
         playerRect.Position = player.position;
         playerReach.Position = player.position + player.direction;
 
         // Player movement
-        if (Raylib.IsKeyPressed(KeyboardKey.A))
-        {
-            player.position.X -= 50;
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.D))
-        {
-            player.position.X += 50;
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.W))
-        {
-            player.position.Y -= 50;
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.S))
-        {
-            player.position.Y += 50;
-        }
+        player.Movement(player);
 
         // Changes which direction the player is looking
-        if (Raylib.IsKeyPressed(KeyboardKey.Up))
-        {
-            player.ChangeDirection("UP", player);
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.Down))
-        {
-            player.ChangeDirection("DOWN", player);
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.Left))
-        {
-            player.ChangeDirection("LEFT", player);
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.Right))
-        {
-            player.ChangeDirection("RIGHT", player);
-        }
+        player.ChangeDirection(player);
 
         // Changes the selected item in the hotbar
-        if (Raylib.IsKeyPressed(KeyboardKey.One))
-        {
-            player.selectedPlant = 1;
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.Two))
-        {
-            player.selectedPlant = 2;
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.Three))
-        {
-            player.selectedPlant = 3;
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.Four))
-        {
-            player.selectedPlant = 4;
-        }
-        if (Raylib.IsKeyPressed(KeyboardKey.Five))
-        {
-            player.selectedPlant = 5;
-        }
+        player.SelectPlant(player);
 
         // Place or remove plant when pressing M
         if (Raylib.IsKeyReleased(KeyboardKey.M))

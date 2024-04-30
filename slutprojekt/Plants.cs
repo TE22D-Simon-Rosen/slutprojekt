@@ -20,6 +20,7 @@ class Plants
 
     static Color[,] plantTypes = { { Color.Blue, Color.DarkBlue }, { Color.Red, Color.Maroon }, { Color.Orange, carrotOutline }, { raspberryColor, raspberryOutline } };
     // Filled with colors since colors is what differentiates the plants
+    // Is an array becuause it has no need to be changed and it needs values before running the game
 
     public void DrawPlant(Plants plant)
     {

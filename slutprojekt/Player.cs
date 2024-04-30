@@ -12,24 +12,73 @@ class Player
     public int inventory = 0;
     public int money = 0;
 
-    // Changes which direction the "place" square will point
-    public void ChangeDirection(string direction, Player player)
-    {
-        if (direction == "UP")
+
+    public void Movement(Player player){
+        if (Raylib.IsKeyPressed(KeyboardKey.A))
         {
+            player.position.X -= 50;
+        }
+        if (Raylib.IsKeyPressed(KeyboardKey.D))
+        {
+            player.position.X += 50;
+        }
+        if (Raylib.IsKeyPressed(KeyboardKey.W))
+        {
+            player.position.Y -= 50;
+        }
+        if (Raylib.IsKeyPressed(KeyboardKey.S))
+        {
+            player.position.Y += 50;
+        }
+    }
+
+
+    // Changes which direction the "place" square will point
+    public void ChangeDirection(Player player)
+    {
+        if (Raylib.IsKeyPressed(KeyboardKey.Up))
+        {
+            //player.ChangeDirection("UP", player);
             player.direction = new(0, -50);
         }
-        else if (direction == "DOWN")
+        if (Raylib.IsKeyPressed(KeyboardKey.Down))
         {
+            //player.ChangeDirection("DOWN", player);
             player.direction = new(0, 50);
         }
-        else if (direction == "LEFT")
+        if (Raylib.IsKeyPressed(KeyboardKey.Left))
         {
+            //player.ChangeDirection("LEFT", player);
             player.direction = new(-50, 0);
         }
-        else if (direction == "RIGHT")
+        if (Raylib.IsKeyPressed(KeyboardKey.Right))
         {
+            //player.ChangeDirection("RIGHT", player);
             player.direction = new(50, 0);
+        }
+    }
+
+
+    public void SelectPlant(Player player){
+         if (Raylib.IsKeyPressed(KeyboardKey.One))
+        {
+            player.selectedPlant = 1;
+        }
+        if (Raylib.IsKeyPressed(KeyboardKey.Two))
+        {
+            player.selectedPlant = 2;
+        }
+        if (Raylib.IsKeyPressed(KeyboardKey.Three))
+        {
+            player.selectedPlant = 3;
+        }
+        if (Raylib.IsKeyPressed(KeyboardKey.Four))
+        {
+            player.selectedPlant = 4;
+        }
+        if (Raylib.IsKeyPressed(KeyboardKey.Five))
+        {
+            player.selectedPlant = 5;
         }
     }
 
