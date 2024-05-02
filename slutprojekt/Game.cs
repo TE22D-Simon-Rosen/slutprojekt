@@ -26,10 +26,13 @@ class Game
                 plant.stage += 1;
             }
         }
-
-        player.money += player.inventory * 3;
-        player.inventory = 0;
     }
+
+    public int AddValuesAndMultiplyBy3(int a, int b){
+        int newValue = a + b * 3;
+        return newValue;
+    }
+
 
     // Used to show a black screen for 3 seconds while the player sleeps
     public void Sleep()

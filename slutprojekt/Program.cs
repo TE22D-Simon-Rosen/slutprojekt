@@ -13,7 +13,7 @@ Random random = new Random();
 Color transparentGreen = new Color(108, 224, 79, 100);
 Color transparentRed = new Color(237, 12, 12, 150);
 List<Plants> listOfPlants = new List<Plants>();
-// Is a list becuase it has to be dynamically changed when placing plants
+// Is a list becuase it has to be dynamically changed when placing plants which an array can't do
 
 Plants testPlant = new Plants();
 listOfPlants.Add(testPlant);
@@ -43,9 +43,6 @@ while (!Raylib.WindowShouldClose())
         if (Raylib.IsKeyPressed(KeyboardKey.E)){
             game.scene = "start";
         }
-    }
-    else if(game.scene == "convert"){
-
     }
     else if (game.scene == "game")
     {
@@ -107,6 +104,8 @@ while (!Raylib.WindowShouldClose())
             if (Raylib.CheckCollisionRecs(playerRect, game.bed))
             {
                 game.EndDay(listOfPlants, player);
+                player.money = game.AddValuesAndMultiplyBy3(player.money, player.inventory);
+                player.inventory = 0;
                 game.timer = 0;
                 game.scene = "sleep";
             }
